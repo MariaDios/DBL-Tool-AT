@@ -26,9 +26,9 @@ st.markdown("""
   .kpi-row { display: flex; gap: 12px; margin-bottom: 1.5rem; flex-wrap: wrap; }
   .kpi { background: #f8faf9; border: 1px solid #d8eed8; border-left: 4px solid #2d5a40;
          border-radius: 10px; padding: 0.9rem 1.2rem; flex: 1; min-width: 140px; }
-  .kpi .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: #222222; font-weight: 700; }
-  .kpi .value { font-size: 1.7rem; font-weight: 700; color: #111111; }
-  .kpi .sub   { font-size: 0.72rem; color: #555555; margin-top: 2px; }
+  .kpi .label { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: #222222; font-weight: 700; }
+  .kpi .value { font-size: 2.1rem; font-weight: 800; color: #111111; }
+  .kpi .sub   { font-size: 0.82rem; color: #555555; margin-top: 3px; }
   .sec-title { font-size: 1.3rem; font-weight: 700; color: #111111; border-bottom: 2px solid #2d5a40;
                padding-bottom: 0.3rem; margin-bottom: 1rem; }
   .dim-desc { font-size: 13px; color: #444444; font-style: italic; margin-bottom: 0.8rem; }
@@ -134,15 +134,15 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# KPI row — top performer = lowest score (1=best)
+# KPI row — top performer = lowest score (1=best), worst = highest score
 top = top_performer(selected)
-avg = round(sum(overall(s) for s in selected)/len(selected), 1)
+worst = max(selected, key=overall)
 st.markdown(f"""
 <div class="kpi-row">
   <div class="kpi"><div class="label">Systems selected</div><div class="value">{len(selected)}</div><div class="sub">of 6 total</div></div>
   <div class="kpi"><div class="label">Dimensions</div><div class="value">6</div><div class="sub">18 criteria total</div></div>
-  <div class="kpi"><div class="label">Top performer</div><div class="value">{overall(top)}</div><div class="sub">{top} &nbsp;·&nbsp; lowest score = strongest</div></div>
-  <div class="kpi"><div class="label">Average overall score</div><div class="value">{avg}</div><div class="sub">arithmetic mean &nbsp;·&nbsp; 1 = highest fulfilment &nbsp;·&nbsp; 5 = absent</div></div>
+  <div class="kpi" style="border-left-color:#2d5a40"><div class="label">Top performer</div><div class="value" style="color:#2d5a40">{overall(top)}</div><div class="sub">{top} &nbsp;·&nbsp; lowest score = strongest</div></div>
+  <div class="kpi" style="border-left-color:#b03030"><div class="label">Worst performer</div><div class="value" style="color:#b03030">{overall(worst)}</div><div class="sub">{worst} &nbsp;·&nbsp; highest score = most gaps</div></div>
 </div>
 """, unsafe_allow_html=True)
 
