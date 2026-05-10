@@ -174,7 +174,7 @@ with tabs[0]:
                     p["website"] = website_val
 
     st.markdown('<div class="sec-title" style="margin-top:1.5rem">Overall Scores</div>', unsafe_allow_html=True)
-    st.markdown('<p class="dim-desc">Arithmetic mean across all 18 criteria. Score of 1 = highest fulfilment, 5 = feature absent. Lower is better.</p>', unsafe_allow_html=True)
+    st.markdown('<p class="dim-desc">Arithmetic mean across all 18 criteria. Score of 1 = highest fulfilment, 5 = feature absent.</p>', unsafe_allow_html=True)
     names  = list(selected)
     ovs    = [overall(k) for k in selected]
     colors = [DEFAULT_SCORES[k]["color"] for k in selected]
