@@ -209,9 +209,10 @@ with tabs[0]:
 
     st.markdown('<div class="sec-title" style="margin-top:1.5rem">Overall Scores</div>', unsafe_allow_html=True)
     st.markdown('<p class="dim-desc">Arithmetic mean across all 18 criteria. Lower score = stronger implementation. Score of 1 = criterion fully met, 5 = absent.</p>', unsafe_allow_html=True)
-    names  = list(selected)
-    ovs    = [overall(k) for k in selected]
-    colors = [DEFAULT_SCORES[k]["color"] for k in selected]
+    sorted_selected = sorted(selected, key=overall)
+    names  = list(sorted_selected)
+    ovs    = [overall(k) for k in sorted_selected]
+    colors = [DEFAULT_SCORES[k]["color"] for k in sorted_selected]
     fig = px.bar(x=names, y=ovs, color=names, color_discrete_sequence=colors,
                  text=[f"{s:.1f}" for s in ovs], labels={"x":"","y":"Average Score (1–5)"})
     fig.update_traces(textposition="outside")
